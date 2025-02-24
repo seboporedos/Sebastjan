@@ -14,7 +14,7 @@ function prikaziObrazec(program) {
 // Inicializacija Supabase klienta
 const supabaseUrl = "https://iutiuedygqhofbwdrkzv.supabase.co"; // Zamenjajte z vašim URL-jem
 const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dGl1ZWR5Z3Fob2Zid2Jya3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODM0MjMsImV4cCI6MjA1NTk1OTQyM30.-pYn9koN-clGMuUalQHi3t0g5N2sEjIbvkrCyHz1FSI"; // Zamenjajte z vašim API ključem
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dGl1ZWR5Z3Fob2Zid2Rya3p2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MDM4MzQyMywiZXhwIjoyMDU1OTU5NDIzfQ.GFlAtyDTSSbaLTbM17-Fnm5Iiq5Civ5R9AEfa8pJr5Q"; // Zamenjajte z vašim API ključem
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 // Funkcija za shranjevanje podatkov v bazo podatkov
