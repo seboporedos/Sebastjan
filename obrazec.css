@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+}
+
+header {
+  height: 80px;
+}
+
+h1 {
+  font-family: fantasy;
+  margin: 15px 100px;
+  font-size: 55px;
+  text-align: left;
+}
+
+/* Main container styles */
+.container {
+  position: relative;
+  display: flex;
+  background-color: #191818;
+  padding: 160px 0px;
+  height: 740px;
+  color: white;
+}
+
+/* Back button */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.additional-info-container {
+  display: flex;
+  justify-content: center; /* Horizontalno centriranje */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.additional-info {
+  font-size: 45px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Form section */
+.form-section {
+  width: 60%;
+  margin-left: 250px;
+}
+
+.form-section h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  font-size: 24px;
+  margin-top: 40px;
+}
+
+form label {
+  margin: 5px 0 5px;
+  font-size: 18px;
+}
+
+form input {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Program info section */
+.program-info {
+  width: 100%;
+  text-align: center;
+}
+
+.program-box {
+  background-color: white;
+  width: 350px;
+  height: 480px;
+  margin: 0px auto 40px;
+  color: black;
+  padding: 20px;
+  border-radius: 4px;
+}
+.program-box h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  border-bottom: #191818 2px solid;
+}
+
+.program-box h3 {
+  font-size: 30px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.program-box .program-name {
+  font-weight: bold;
+  font-size: 40px;
+  margin: 10px 0;
+}
+
+.program-box .program-price {
+  font-weight: bold;
+  font-size: 40px;
+  margin: 10px 0;
+}
+
+.program-box .program-time {
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.confirm-button {
+  padding: 20px 80px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.confirm-button:hover {
+  opacity: 0.9;
+}

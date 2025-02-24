@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Postani član</title>
+    <link rel="stylesheet" href="obrazec.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Postani član</h1>
+    </header>
+    <main class="container">
+      <a href="javascript:history.back()" class="back-button">&#9668;Nazaj</a>
+      <div class="additional-info-container">
+        <h2 class="additional-info">Potrebujemo še nekaj informacij</h2>
+      </div>
+      <div class="form-section">
+        <h2>Osebni podatki</h2>
+        <form id="orderForm">
+          <input type="hidden" name="program" value="PREMIUM" />
+          <div class="row">
+            <div class="form-group">
+              <label for="ime">Ime:</label>
+              <input type="text" id="ime" name="ime" required />
+            </div>
+            <div class="form-group">
+              <label for="priimek">Priimek:</label>
+              <input type="text" id="priimek" name="priimek" required />
+            </div>
+          </div>
+          <label for="datum_rojstva">Datum rojstva:</label>
+          <input type="date" id="datum-rojstva" name="datum_rojstva" required />
+
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="telefon">Telefonska številka:</label>
+          <input type="tel" id="telefon" name="telefon" required />
+
+          <button class="confirm-button" type="submit">POTRDI</button>
+        </form>
+      </div>
+      <div class="program-info">
+        <div class="program-box">
+          <h2>Fitnes center</h2>
+          <h3>Izbran program:</h3>
+          <p class="program-name">PREMIUM</p>
+          <p class="program-time">
+            Članstvo <br />
+            1 mesec
+          </p>
+          <p class="program-price">49,99€</p>
+          <p class="info">
+            Po uspešno oddanem naročilu boste na vaš e-mail prejeli potrdilo o
+            naročilu.
+          </p>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
