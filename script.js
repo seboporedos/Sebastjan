@@ -14,22 +14,22 @@ function prikaziObrazec(program) {
 // Inicializacija Supabase klienta
 const supabaseUrl = "https://iutiuedygqhofbwdrkzv.supabase.co"; // Zamenjajte z vašim URL-jem
 const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dGl1ZWR5Z3Fob2Zid2Rya3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODM0MjMsImV4cCI6MjA1NTk1OTQyM30.-pYn9koN-clGMuUalQHi3t0g5N2sEjIbvkrCyHz1FSI"; // Zamenjajte z vašim API ključem
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dGl1ZWR5Z3Fob2Zid2Jya3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODM0MjMsImV4cCI6MjA1NTk1OTQyM30.-pYn9koN-clGMuUalQHi3t0g5N2sEjIbvkrCyHz1FSI"; // Zamenjajte z vašim API ključem
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 // Funkcija za shranjevanje podatkov v bazo podatkov
 async function shraniNarocilo(event) {
-  console.log("Funkcija shraniNarocilo se je poklicala");
   event.preventDefault(); // Prepreči privzeto pošiljanje obrazca
+  console.log("Funkcija shraniNarocilo se je poklicala");
 
-  // Branje podatkov iz obrazca
-  const form = event.target;
-  const ime = form.querySelector("#ime").value;
-  const priimek = form.querySelector("#priimek").value;
-  const datumRojstva = form.querySelector("#datum_rojstva").value;
-  const email = form.querySelector("#email").value;
-  const telefon = form.querySelector("#telefon").value;
-  const program = form.querySelector('input[name="program"]').value;
+  // Pridobitev podatkov iz obrazca
+  const form = document.querySelector("#orderForm"); // Zajame glavni obrazec
+  const ime = document.querySelector("#ime").value;
+  const priimek = document.querySelector("#priimek").value;
+  const datumRojstva = document.querySelector("#datum_rojstva").value;
+  const email = document.querySelector("#email").value;
+  const telefon = document.querySelector("#telefon").value;
+  const program = document.querySelector('input[name="program"]').value;
 
   console.log("Podatki iz obrazca:", {
     ime,
@@ -47,20 +47,19 @@ async function shraniNarocilo(event) {
       { ime, priimek, datum_rojstva: datumRojstva, email, telefon, program },
     ]);
 
-  console.log("Odziv iz Supabase:", { data, error });
-
   if (error) {
     console.error("Napaka pri shranjevanju naročila:", error);
     alert("Prišlo je do napake. Prosimo, poskusite znova.");
   } else {
     console.log("Naročilo uspešno shranjeno:", data);
     alert("Naročilo uspešno oddano!");
-    // Po želji lahko preusmerite uporabnika na drugo stran
+    form.reset(); // Po uspešnem vnosu počisti obrazec
   }
 }
 
-// Dodajanje dogodka za pošiljanje obrazca
-const forms = document.querySelectorAll("form");
-forms.forEach((form) => {
-  form.addEventListener("submit", shraniNarocilo);
+// Dodajanje dogodka na gumb "POTRDI"
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .querySelector("#submitBtn")
+    .addEventListener("click", shraniNarocilo);
 });
