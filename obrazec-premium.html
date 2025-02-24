@@ -12,7 +12,7 @@
       <h1>Postani član</h1>
     </header>
     <main class="container">
-      <a href="javascript:history.back()" class="back-button">&#9668;Nazaj</a>
+      <a href="index.html" class="back-button">&#9668; Nazaj</a>
       <div class="additional-info-container">
         <h2 class="additional-info">Potrebujemo še nekaj informacij</h2>
       </div>
@@ -23,21 +23,34 @@
           <div class="row">
             <div class="form-group">
               <label for="ime">Ime:</label>
-              <input type="text" id="ime" name="ime" required />
+              <input type="text" id="ime" name="ime" maxlength="30" required />
             </div>
             <div class="form-group">
               <label for="priimek">Priimek:</label>
-              <input type="text" id="priimek" name="priimek" required />
+              <input
+                type="text"
+                id="priimek"
+                name="priimek"
+                maxlength="30"
+                required
+              />
             </div>
           </div>
           <label for="datum_rojstva">Datum rojstva:</label>
           <input type="date" id="datum_rojstva" name="datum_rojstva" required />
 
           <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" maxlength="50" required />
 
           <label for="telefon">Telefonska številka:</label>
-          <input type="tel" id="telefon" name="telefon" required />
+          <input
+            type="tel"
+            id="telefon"
+            name="telefon"
+            inputmode="numeric"
+            required
+            oninput="filterNumbers(event)"
+          />
 
           <button class="confirm-button" type="submit">POTRDI</button>
         </form>

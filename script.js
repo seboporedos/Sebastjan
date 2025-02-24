@@ -80,3 +80,9 @@ function prikaziObrazec(program) {
 
   window.location.href = urlObrazca;
 }
+
+// Funkcija za filtriranje, da se vpisujejo samo številke
+function filterNumbers(event) {
+  const input = event.target;
+  input.value = input.value.replace(/[^0-9]/g, ""); // Zamenja vse, kar ni številka, z ničemer
+}

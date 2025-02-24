@@ -205,7 +205,7 @@ form input {
 #backToStart {
   padding: 10px 20px;
   margin-top: 15px;
-  background-color: #007bff;
+  background-color: red;
   color: white;
   border: none;
   cursor: pointer;
@@ -214,5 +214,5 @@ form input {
 }
 
 #backToStart:hover {
-  background-color: #0056b3;
+  background-color: red;
 }
