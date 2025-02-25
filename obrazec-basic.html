@@ -6,6 +6,7 @@
     <title>Postani član</title>
     <link rel="stylesheet" href="obrazec.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   </head>
   <body>
     <header>
@@ -74,9 +75,9 @@
         </div>
       </div>
     </main>
-    <!-- MODALNO OKNO ZA USPEŠNO NAROČILO -->
-    <div id="successModal" class="modal">
-      <div class="modal-content">
+    <!-- OKENCE ZA USPEŠNO NAROČILO -->
+    <div id="uspesnoOkence" class="okence">
+      <div class="okence-content">
         <h2>Hvala vam za naročilo!</h2>
         <p>Vaša prijava je bila uspešno oddana.</p>
         <button id="backToStart">Nazaj na izbiro programa</button>

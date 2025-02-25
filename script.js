@@ -1,5 +1,6 @@
+emailjs.init("tsW2nGJcWF_L58Yzq");
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("successModal").style.display = "none";
+  document.getElementById("uspesnoOkence").style.display = "none";
 });
 
 // 1️⃣ Popravljena inicializacija Supabase
@@ -57,14 +58,17 @@ async function shraniNarocilo() {
   console.log("Naročilo uspešno shranjeno!", data);
 
   // Prikaži modalno okno samo ob uspešnem shranjevanju
-  document.getElementById("successModal").style.display = "flex";
+  document.getElementById("uspesnoOkence").style.display = "flex";
+
+  // Po uspešnem shranjevanju pošlji potrditveni e-mail
+  posljiPotrdilo(email, ime);
 
   // Po uspešnem shranjevanju počisti obrazec
   document.getElementById("orderForm").reset();
 
   // Doda funkcionalnost gumba za vrnitev
   document.getElementById("backToStart").addEventListener("click", function () {
-    document.getElementById("successModal").style.display = "none";
+    document.getElementById("uspesnoOkence").style.display = "none";
     window.location.href = "index.html";
   });
 }
@@ -85,4 +89,23 @@ function prikaziObrazec(program) {
 function filterNumbers(event) {
   const input = event.target;
   input.value = input.value.replace(/[^0-9]/g, ""); // Zamenja vse, kar ni številka, z ničemer
+}
+
+async function posljiPotrdilo(email, ime) {
+  const templateParams = {
+    to_email: email, // E-mail prejemnika (uporabnika)
+    to_name: ime, // Ime prejemnika
+    message: `Pozdravljeni ${ime},\n\nVaše naročilo je bilo uspešno oddano! Hvala, ker ste se prijavili.\n\nLep pozdrav,\nEkipa fitnesa`,
+  };
+
+  try {
+    let response = await emailjs.send(
+      "service_sebo",
+      "template_oxgj9st",
+      templateParams
+    );
+    console.log("Email poslan:", response);
+  } catch (error) {
+    console.error("Napaka pri pošiljanju e-maila:", error);
+  }
 }

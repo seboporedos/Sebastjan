@@ -166,8 +166,8 @@ form input {
   opacity: 0.9;
 }
 
-/* Modalno okno - stiliranje */
-.modal {
+/* OKENCE ZA USPEŠNO NAROČILO */
+.okence {
   display: none;
   position: fixed;
   z-index: 1000;
@@ -181,7 +181,7 @@ form input {
   justify-content: center;
 }
 
-.modal-content {
+.okence-content {
   background: white;
   padding: 20px;
   text-align: center;
@@ -191,13 +191,13 @@ form input {
   max-width: 400px;
 }
 
-.modal-content h2 {
+.okence-content h2 {
   margin-bottom: 10px;
   font-size: 1.5em;
   color: #333;
 }
 
-.modal-content p {
+.okence-content p {
   font-size: 1.1em;
   color: #555;
 }
@@ -211,8 +211,4 @@ form input {
   cursor: pointer;
   border-radius: 5px;
   font-size: 1em;
-}
-
-#backToStart:hover {
-  background-color: red;
 }
