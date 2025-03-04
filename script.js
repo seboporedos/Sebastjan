@@ -3,9 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("uspesnoOkence").style.display = "none";
 });
 
-// 1️⃣ Popravljena inicializacija Supabase
-const { createClient } = window.supabase; // ✅ Dodaj "window."
-
+// 1️⃣  inicializacija Supabase
+const { createClient } = window.supabase;
 const supabaseUrl = "https://iutiuedygqhofbwdrkzv.supabase.co";
 const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dGl1ZWR5Z3Fob2Zid2Rya3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODM0MjMsImV4cCI6MjA1NTk1OTQyM30.-pYn9koN-clGMuUalQHi3t0g5N2sEjIbvkrCyHz1FSI"; // Tvoj API ključ
@@ -73,24 +72,39 @@ async function shraniNarocilo() {
   });
 }
 
-function prikaziObrazec(program) {
-  // Določi URL obrazca glede na izbrani program
-  var urlObrazca;
-  if (program === "premium") {
-    urlObrazca = "obrazec-premium.html";
-  } else if (program === "basic") {
-    urlObrazca = "obrazec-basic.html";
-  }
-
-  window.location.href = urlObrazca;
-}
-
 // Funkcija za filtriranje, da se vpisujejo samo številke
 function filterNumbers(event) {
   const input = event.target;
-  input.value = input.value.replace(/[^0-9]/g, ""); // Zamenja vse, kar ni številka, z ničemer
+  input.value = input.value.replace(/[^0-9+]/g, ""); // Zamenja vse, kar ni številka, z ničemer
 }
 
+// Funkcija za preverjanje, da je datum rojstva v preteklosti
+document
+  .getElementById("datum_rojstva")
+  .addEventListener("change", function () {
+    let vnos = new Date(this.value);
+    let danes = new Date();
+
+    if (vnos > danes) {
+      alert("Datum rojstva ne more biti v prihodnosti!");
+      this.value = ""; // Počisti polje
+    }
+  });
+
+// Funkcija za preverjanje pravilnosti e-mail naslova
+document.getElementById("email").addEventListener("input", function () {
+  let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!regex.test(this.value)) {
+    this.setCustomValidity(
+      "Vnesite veljaven e-mail naslov (npr. uporabnik@example.com)"
+    );
+  } else {
+    this.setCustomValidity("");
+  }
+});
+
+// Funkcija za pošiljanje potrditvenega e-maila
 async function posljiPotrdilo(email, ime) {
   const templateParams = {
     to_email: email, // E-mail prejemnika (uporabnika)
@@ -108,4 +122,17 @@ async function posljiPotrdilo(email, ime) {
   } catch (error) {
     console.error("Napaka pri pošiljanju e-maila:", error);
   }
+}
+
+// Funkcija za prikaz obrazca glede na izbran program
+function prikaziObrazec(program) {
+  // Določi URL obrazca glede na izbrani program
+  var urlObrazca;
+  if (program === "premium") {
+    urlObrazca = "obrazec-premium.html";
+  } else if (program === "basic") {
+    urlObrazca = "obrazec-basic.html";
+  }
+
+  window.location.href = urlObrazca;
 }

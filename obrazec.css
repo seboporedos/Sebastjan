@@ -79,7 +79,6 @@ form {
 .row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .form-group {
@@ -114,11 +113,10 @@ form input {
 .program-box {
   background-color: white;
   width: 350px;
-  height: 480px;
+  height: 470px;
   margin: 0px auto 40px;
   color: black;
   padding: 20px;
-  border-radius: 4px;
 }
 .program-box h2 {
   font-size: 30px;
