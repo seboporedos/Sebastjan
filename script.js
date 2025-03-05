@@ -1,16 +1,18 @@
+// Inicializacija emailJS za pošiljanje e-pošte
 emailjs.init("tsW2nGJcWF_L58Yzq");
 document.addEventListener("DOMContentLoaded", function () {
+  // Skrij potrditveno okno ob nalaganju strani
   document.getElementById("uspesnoOkence").style.display = "none";
 });
 
-// 1️⃣  inicializacija Supabase
+// 1 Inicializacija Supabase za shranjevanje podatkov
 const { createClient } = window.supabase;
 const supabaseUrl = "https://iutiuedygqhofbwdrkzv.supabase.co";
 const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1dGl1ZWR5Z3Fob2Zid2Rya3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAzODM0MjMsImV4cCI6MjA1NTk1OTQyM30.-pYn9koN-clGMuUalQHi3t0g5N2sEjIbvkrCyHz1FSI"; // Tvoj API ključ
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// 2️⃣ Prepreči osvežitev obrazca in poveži gumb s funkcijo
+// 2️ Prepreči osvežitev obrazca ob oddaji in kliči funkcijo za shranjevanje
 document
   .getElementById("orderForm")
   .addEventListener("submit", function (event) {
@@ -18,10 +20,11 @@ document
     shraniNarocilo(); // Kliči funkcijo za shranjevanje
   });
 
-// 3️⃣ Funkcija za shranjevanje podatkov v Supabase
+// 3️ Funkcija za shranjevanje podatkov v Supabase
 async function shraniNarocilo() {
   console.log("Funkcija shraniNarocilo se je poklicala");
 
+  // Preberi podatke iz obrazca
   const ime = document.querySelector("#ime").value.trim();
   const priimek = document.querySelector("#priimek").value.trim();
   const datum_rojstva = document.querySelector("#datum_rojstva").value;
@@ -29,6 +32,7 @@ async function shraniNarocilo() {
   const telefon = document.querySelector("#telefon").value.trim();
   const program = document.querySelector("input[name='program']").value.trim();
 
+  // Preveri, če so vsa polja izpolnjena
   if (!ime || !priimek || !datum_rojstva || !email || !telefon || !program) {
     console.error("Napaka: Manjkajo podatki!");
     alert("Prosim, izpolni vsa polja!");
@@ -44,6 +48,7 @@ async function shraniNarocilo() {
     program,
   });
 
+  // Shranjevanje podatkov v bazo
   const { data, error } = await supabase
     .from("narocila")
     .insert([{ ime, priimek, datum_rojstva, email, telefon, program }]);
@@ -56,29 +61,29 @@ async function shraniNarocilo() {
 
   console.log("Naročilo uspešno shranjeno!", data);
 
-  // Prikaži modalno okno samo ob uspešnem shranjevanju
+  // Prikaži potrditveno okno
   document.getElementById("uspesnoOkence").style.display = "flex";
 
-  // Po uspešnem shranjevanju pošlji potrditveni e-mail
+  // Pošlji potrditveni e-mail uporabniku
   posljiPotrdilo(email, ime);
 
   // Po uspešnem shranjevanju počisti obrazec
   document.getElementById("orderForm").reset();
 
-  // Doda funkcionalnost gumba za vrnitev
+  // Dodaj funkcionalnost gumba za vrnitev na začetno stran
   document.getElementById("backToStart").addEventListener("click", function () {
     document.getElementById("uspesnoOkence").style.display = "none";
     window.location.href = "index.html";
   });
 }
 
-// Funkcija za filtriranje, da se vpisujejo samo številke
+// Funkcija za filtriranje, da lahko uporabnik vpiše samo številke v polje telefona
 function filterNumbers(event) {
   const input = event.target;
-  input.value = input.value.replace(/[^0-9+]/g, ""); // Zamenja vse, kar ni številka, z ničemer
+  input.value = input.value.replace(/[^0-9+]/g, ""); // Odstrani vse, kar ni številka ali znak +
 }
 
-// Funkcija za preverjanje, da je datum rojstva v preteklosti
+// Funkcija za preverjanje, da datum rojstva ni v prihodnosti
 document
   .getElementById("datum_rojstva")
   .addEventListener("change", function () {
@@ -126,7 +131,7 @@ async function posljiPotrdilo(email, ime) {
 
 // Funkcija za prikaz obrazca glede na izbran program
 function prikaziObrazec(program) {
-  // Določi URL obrazca glede na izbrani program
+  // Nastavi URL obrazca glede na izbran program
   var urlObrazca;
   if (program === "premium") {
     urlObrazca = "obrazec-premium.html";
@@ -134,5 +139,6 @@ function prikaziObrazec(program) {
     urlObrazca = "obrazec-basic.html";
   }
 
+  // Preusmeri uporabnika na ustrezno stran
   window.location.href = urlObrazca;
 }
